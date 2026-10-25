@@ -398,3 +398,51 @@ footer a { color: var(--ink-soft); border-bottom: 1px dashed var(--line); }
   .reveal { opacity: 1; transform: none; transition: none; }
   .btn, .post, .contact, .theme-toggle { transition: none; }
 }
+
+/* ---------------------------------------------------------------
+   彩蛋：隐藏主题「星夜」
+   --------------------------------------------------------------- */
+#nightSky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  animation: skyIn 0.9s ease forwards;
+}
+
+@keyframes skyIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  z-index: 40;
+  transform: translate(-50%, 14px);
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: rgba(13, 43, 62, 0.9);
+  color: #eaf6ff;
+  font-size: 0.86rem;
+  text-align: center;
+  max-width: min(90vw, 460px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nightSky { animation: none; opacity: 1; }
+  .toast { transition: none; }
+}
