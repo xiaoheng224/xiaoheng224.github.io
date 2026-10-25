@@ -446,3 +446,96 @@ footer a { color: var(--ink-soft); border-bottom: 1px dashed var(--line); }
   #nightSky { animation: none; opacity: 1; }
   .toast { transition: none; }
 }
+
+/* ---------------------------------------------------------------
+   彩蛋 1：连点头像 → 站内终端
+   --------------------------------------------------------------- */
+.hero-avatar.pop {
+  animation: avatarPop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes avatarPop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.terminal-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(6, 20, 30, 0.42);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+
+.terminal-modal.open { opacity: 1; }
+
+.terminal-window {
+  width: min(660px, 100%);
+  background: #0b1412;
+  border: 1px solid #1e352c;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transform: translateY(14px) scale(0.985);
+  transition: transform 0.26s ease;
+}
+
+.terminal-modal.open .terminal-window { transform: none; }
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  background: #0a110f;
+  border-bottom: 1px solid #1e352c;
+}
+
+.tdot { width: 9px; height: 9px; border-radius: 50%; background: #22423a; }
+
+.terminal-bar em {
+  margin-left: 6px;
+  color: #4b7a63;
+  font-style: normal;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+
+.terminal-close {
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #6f9b88;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.terminal-close:hover { background: #16261f; color: #86efac; }
+
+.terminal-body {
+  margin: 0;
+  padding: 18px 18px 22px;
+  min-height: 210px;
+  font-family: ui-monospace, SFMono-Regular, "Cascadia Mono", Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.75;
+  color: #86efac;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-avatar.pop { animation: none; }
+  .terminal-modal, .terminal-window { transition: none; }
+}
